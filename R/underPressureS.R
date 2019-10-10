@@ -37,7 +37,7 @@ pressureWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "20
   #data frame aanpassen/ xts objects nodig voor time
   res2 <- xts::xts(res2[,-1], order.by = res2$Timestamp)
   # plot maken
-  PressureG <- dygraph(res2) %>% dyRangeSelector()  %>% dySeries("Sensor1",color = "green") %>% dyOptions(connectSeparatedPoints = TRUE)
+  PressureG <- dygraph(res2) %>% dyRangeSelector()  %>% dySeries("Sensor1",color = "red") %>% dyOptions(connectSeparatedPoints = TRUE)
   htmlwidgets::saveWidget(widgetframe::frameableWidget(PressureG),'dygraph_pressure_self.html', selfcontained = TRUE)
   # Clear the result
   dbClearResult(res)
@@ -125,7 +125,7 @@ humidWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "2019-
   #data frame aanpassen/ xts objects nodig voor time
   res2 <- xts::xts(res2[,-1], order.by = res2$Timestamp)
   # plot maken
-  HumidG <- dygraph(res2) %>% dyRangeSelector()  %>% dySeries("Sensor1",color = "blue") %>% dyOptions(connectSeparatedPoints = TRUE)
+  HumidG <- dygraph(res2) %>% dyRangeSelector()  %>% dySeries("Sensor1",color = "red") %>% dyOptions(connectSeparatedPoints = TRUE)
   htmlwidgets::saveWidget(widgetframe::frameableWidget(HumidG),'dygraph_humid_self.html', selfcontained = TRUE)
   # Clear the result
   dbClearResult(res)
