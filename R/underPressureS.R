@@ -1,4 +1,4 @@
-pressureWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "2019-09-30",sensorID2 = 1207)
+pressureWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "2019-09-30",sensorID2 = 929)
 {
   require(RMariaDB)
   require(DBI)
@@ -46,7 +46,7 @@ pressureWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "20
   dbDisconnect(con)
 }
 
-tempWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "2019-09-30",sensorID2 = 1207)
+tempWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "2019-09-30",sensorID2 = 929)
 {
   require(RMariaDB)
   require(DBI)
@@ -81,7 +81,7 @@ tempWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "2019-0
   #data frame aanpassen/ xts objects nodig voor time
   res2 <- xts::xts(res2[,-1], order.by = res2$Timestamp)
   # plot maken
-  TempG <- dygraph(res2) %>% dyRangeSelector()  %>% dySeries("Sensor1",color = "red")
+  TempG <- dygraph(res2) %>% dyRangeSelector()  %>% dySeries("Sensor1",color = "red") %>% dyOptions(connectSeparatedPoints = TRUE)
   htmlwidgets::saveWidget(widgetframe::frameableWidget(TempG),'dygraph_temp_self.html', selfcontained = TRUE)
   # Clear the result
   dbClearResult(res)
@@ -90,7 +90,7 @@ tempWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "2019-0
   dbDisconnect(con)
 }
 
-humidWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "2019-09-30",sensorID2 = 1207)
+humidWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "2019-09-30",sensorID2 = 929)
 {
   require(RMariaDB)
   require(DBI)
@@ -125,7 +125,7 @@ humidWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "2019-
   #data frame aanpassen/ xts objects nodig voor time
   res2 <- xts::xts(res2[,-1], order.by = res2$Timestamp)
   # plot maken
-  HumidG <- dygraph(res2) %>% dyRangeSelector()  %>% dySeries("Sensor1",color = "blue")
+  HumidG <- dygraph(res2) %>% dyRangeSelector()  %>% dySeries("Sensor1",color = "blue") %>% dyOptions(connectSeparatedPoints = TRUE)
   htmlwidgets::saveWidget(widgetframe::frameableWidget(HumidG),'dygraph_humid_self.html', selfcontained = TRUE)
   # Clear the result
   dbClearResult(res)
