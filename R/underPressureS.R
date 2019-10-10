@@ -24,8 +24,8 @@ pressureWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "20
   #querry voor 2 sensors tegelijk
   querry <- paste0(paste0(paste0("Select * FROM (select *
                                  from (
-                                 select Timestamp, GROUP_CONCAT(case when SensorID=", sensorID)," then Humidity end) as Sensor1, GROUP_CONCAT(case when SensorID=",sensorID2)," then Humidity end) as Sensor2
-                   from HumidityData
+                                 select Timestamp, GROUP_CONCAT(case when SensorID=", sensorID)," then Pressure end) as Sensor1, GROUP_CONCAT(case when SensorID=",sensorID2)," then Pressure end) as Sensor2
+                   from PressureData
                    group by Timestamp
                                  ) as sub
                    where Sensor1 is not NULL
@@ -67,8 +67,8 @@ tempWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "2019-0
   # You can fetch all results:
   querry <- paste0(paste0(paste0("Select * FROM (select *
                                  from (
-                                 select Timestamp, GROUP_CONCAT(case when SensorID=", sensorID)," then Humidity end) as Sensor1, GROUP_CONCAT(case when SensorID=",sensorID2)," then Humidity end) as Sensor2
-                   from HumidityData
+                                 select Timestamp, GROUP_CONCAT(case when SensorID=", sensorID)," then Temperature end) as Sensor1, GROUP_CONCAT(case when SensorID=",sensorID2)," then Temperature end) as Sensor2
+                   from TempData
                    group by Timestamp
                                  ) as sub
                    where Sensor1 is not NULL
