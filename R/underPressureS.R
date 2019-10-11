@@ -123,6 +123,7 @@ humidWidget <- function(sensorID = 929, dateFrom = "2019-09-01", dateTo = "2019-
 }
 getdata <- function(id=929)
 {
+  require(RMariaDB)
   con <- dbConnect(
     drv = RMariaDB::MariaDB(),
     db = 'Opencpu'
